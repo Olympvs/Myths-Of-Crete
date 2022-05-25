@@ -12,7 +12,7 @@ namespace Olympvs
             if(other.tag == "Scene")
             {
                 //Adicionar nome da Scene ou numero em que a posição do nivel esta no "Scenes In Build"
-               SceneManager.LoadScene("Boss Room"); 
+               SceneManager.LoadScene(4); 
             }
         }
     }
