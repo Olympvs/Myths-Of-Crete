@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CavernLevelTrigger : MonoBehaviour
+namespace Olympvs
 {
-    void OnTriggerEnter(Collider other)
+    public class CavernLevelTrigger : MonoBehaviour
     {
-        if(other.tag == "Scene")
+        void OnTriggerEnter(Collider other)
         {
-            //Adicionar nome da Scene ou numero em que a posição do nivel esta no "Scenes In Build"
-            SceneManager.LoadScene("Boss Room"); 
+            if(other.tag == "Scene")
+            {
+                //Adicionar nome da Scene ou numero em que a posição do nivel esta no "Scenes In Build"
+               SceneManager.LoadScene("Boss Room"); 
+            }
         }
     }
 }
+
+

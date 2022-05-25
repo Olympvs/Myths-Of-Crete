@@ -9,7 +9,7 @@ public class DoorController : MonoBehaviour
         if (other.tag == "Door")
         {
             Animator anim = other.GetComponentInChildren<Animator>();
-            if(Input.GetKeyDown(KeyCode.E))
+            if(Input.GetKeyDown(KeyCode.F))
             {
                 anim.SetTrigger("OpenClose");
             }

@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TrapSpike : MonoBehaviour
+namespace Olympvs
 {
-
-    public List<CharacterController> ListCharacters = new List<CharacterController>();
+    public class TrapSpike : MonoBehaviour
+    {
+    
+    public List<PlayerStats> PlayerStatus = new List<PlayerStats>();
     public List<Spike> ListSpikes = new List<Spike>();
 
     Coroutine SpikeTriggerRoutine;
@@ -18,7 +20,7 @@ public class TrapSpike : MonoBehaviour
     {
         SpikeTriggerRoutine = null;
         SpikesReloaded = true;
-        ListCharacters.Clear();
+        PlayerStatus.Clear();
         ListSpikes.Clear();  
 
         Spike[] arr = this.gameObject.GetComponentsInChildren<Spike>();
@@ -30,9 +32,9 @@ public class TrapSpike : MonoBehaviour
 
     private void Update()
     {
-        if (ListCharacters.Count != 0)
+        if (PlayerStatus.Count != 0)
         {
-            foreach (CharacterController control in ListCharacters)
+            foreach (PlayerStats control in PlayerStatus)
             {
                 if (SpikeTriggerRoutine == null && SpikesReloaded)
                 {
@@ -80,13 +82,16 @@ public class TrapSpike : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        CharacterController control = other.gameObject.transform.root.gameObject.GetComponent<CharacterController>();
+        PlayerStats control = other.GetComponent<PlayerStats>();
 
+        //int damage = 25;
+        
         if (control != null)
         {
-            if (!ListCharacters.Contains(control))
+            if (!PlayerStatus.Contains(control))
             {
-                ListCharacters.Add(control);
+                PlayerStatus.Add(control);
+                //control.TakeDamage(damage);
                 //SceneManager.LoadScene(0); if player hits the trap dies and reloads the scene 
                 
             }
@@ -95,15 +100,17 @@ public class TrapSpike : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        CharacterController control = other.gameObject.transform.root.gameObject.GetComponent<CharacterController>();
+        PlayerStats control = other.gameObject.transform.root.gameObject.GetComponent<PlayerStats>();
 
         if (control != null)
         {
-            if (ListCharacters.Contains(control))
+            if (PlayerStatus.Contains(control))
             {
-                ListCharacters.Remove(control);
+                PlayerStatus.Remove(control);
                 //Add damage here when he exits the collision with the spikes
             }
         }
     }
+    }
 }
+

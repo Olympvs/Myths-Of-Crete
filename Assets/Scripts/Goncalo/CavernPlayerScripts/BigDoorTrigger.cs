@@ -2,15 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BigDoorTrigger : MonoBehaviour
+namespace Olympvs
 {
-    private void OnTriggerEnter(Collider other)
+    public class BigDoorTrigger : MonoBehaviour
     {
-        if (other.tag == "DoorSceneTrigger")
+         private void OnTriggerEnter(Collider other)
         {
+            if (other.tag == "DoorSceneTrigger")
+            {
             Animator anim = other.GetComponentInChildren<Animator>();
-            anim.Play("SceneDoorTrigger");
+            anim.Play("SceneTriggerDoor");
             //Exprimentar se da trigger a animação do cubo 
+            }
         }
     }
 }
+
+
