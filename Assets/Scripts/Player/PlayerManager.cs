@@ -43,6 +43,8 @@ namespace Olympvs
 
         void Update()
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             float delta = Time.deltaTime;
             
             isInteracting = anim.GetBool("isInteracting");
