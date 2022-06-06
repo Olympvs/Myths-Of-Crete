@@ -8,10 +8,15 @@ namespace Olympvs
     public class SceneSwitch : MonoBehaviour
     {
         public int numberScene;
+        public int spawnPoint;
 
         private void OnTriggerEnter(Collider other)
         {
-            SceneManager.LoadScene(numberScene);
+            if (other.tag == "Player")
+            {
+                GameManager.spawn = spawnPoint;
+                SceneManager.LoadScene(numberScene);
+            }
         }
     }
 }
