@@ -2,17 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorController : MonoBehaviour
+namespace Olympvs
 {
-    private void OnTriggerStay(Collider other)
+    public class DoorController : MonoBehaviour
     {
-        if (other.tag == "Door")
+        private void OnTriggerStay(Collider other)
         {
-            Animator anim = other.GetComponentInChildren<Animator>();
-            if(Input.GetKeyDown(KeyCode.F))
+            if (other.tag == "Door")
             {
-                anim.SetTrigger("OpenClose");
+                Animator anim = other.GetComponentInChildren<Animator>();
+                if(Input.GetKeyDown(KeyCode.F))
+                {
+                    anim.SetTrigger("OpenClose");
+                }
             }
         }
     }
+
 }
+

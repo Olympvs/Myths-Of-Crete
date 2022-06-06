@@ -4,6 +4,7 @@ Shader "Hidden/vignette"
     {
         _MainTex ("Texture", 2D) = "white" {}
         _dmgTex("dmgTexture", 2D) = "white" {}
+        _slider ("display name", Range(0, 1)) = 0
     }
     SubShader
     {
@@ -40,15 +41,24 @@ Shader "Hidden/vignette"
 
             sampler2D _MainTex;
             sampler2D _dmgTex;
+            float _slider;
 
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
                 fixed4 dmgTexture = tex2D(_dmgTex, i.uv);
                 // just invert the colors
-            if (dmgTexture.r < 0.2 && dmgTexture.g < 0.2 && dmgTexture.b < 0.2)
+            if (dmgTexture.r < _slider && dmgTexture.g < _slider && dmgTexture.b < _slider)
             {
-                col = fixed4(dmgTexture.r * 2, 0, 0, 1);
+                if (_slider > 0.5 && dmgTexture.r >0.4 && dmgTexture.g > 0.4 && dmgTexture.b >0.4)
+                {
+                    col = col + fixed4(1, 0, 0, 1);
+                }
+                else
+                {
+                    col = fixed4(dmgTexture.r * 2, 0, 0, 1);
+                }
+                
             }
                 return col;
             }
