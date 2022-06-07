@@ -16,6 +16,8 @@ namespace Olympvs
         public GameObject interactableUIGameObject;
         public GameObject itemInteractableGameObject;
 
+        public Quest quest;
+
         public bool isInteracting;
 
         [Header("Player Flags")]
@@ -26,6 +28,8 @@ namespace Olympvs
         public bool isUsingRightHand;
         public bool isUsingLeftHand;
         public bool isInvulnerable;
+        public bool isDialog;
+        public bool isSpeaking;
 
         private void Awake()
         {
@@ -39,6 +43,7 @@ namespace Olympvs
             playerStats = GetComponent<PlayerStats>();
             playerLocomotion = GetComponent<PlayerLocomotion>();
             interactableUI = FindObjectOfType<InteractableUI>();
+            isDialog = false;
         }
 
         void Update()
@@ -60,20 +65,25 @@ namespace Olympvs
             playerStats.RegenerateStamina();
 
             CheckForInteractableObject();
+            CheckForDialog();
         }
 
         private void FixedUpdate()
         {
             float delta = Time.fixedDeltaTime;
-            playerLocomotion.HandleMovement(delta);
-            playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
-            
-
-            if (cameraHandler != null)
+            if (!isSpeaking)
             {
-                cameraHandler.FollowTarget(delta);
-                cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
+                playerLocomotion.HandleMovement(delta);
+                playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
+                
+
+                if (cameraHandler != null)
+                {
+                    cameraHandler.FollowTarget(delta);
+                    cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
+                }
             }
+            
         }
 
         private void LateUpdate() 
@@ -123,6 +133,29 @@ namespace Olympvs
                 if (itemInteractableGameObject != null && inputHandler.a_Input)
                 {
                     itemInteractableGameObject.SetActive(false);
+                }
+            }
+        }
+
+        public void CheckForDialog()
+        {
+            RaycastHit hit;
+
+            if (Physics.SphereCast(transform.position, 1f, transform.forward, out hit, 2f, cameraHandler.ignoreLayers))
+            {
+                if (hit.collider.tag == "Interactable" && isDialog)
+                {
+                    DialogueTrigger dialogueTrigger = hit.collider.GetComponent<DialogueTrigger>();
+                    if (dialogueTrigger != null && inputHandler.a_Input && isSpeaking == false)
+                    {
+                        hit.collider.GetComponent<DialogueTrigger>().TriggerDialogue();
+                        isSpeaking = true;
+                    }
+                    if (dialogueTrigger != null && inputHandler.a_Input && isSpeaking == true)
+                    {
+                        FindObjectOfType<DialogueManager>().DisplayNextSentence();
+                        Debug.Log("heuyyy " + isInteracting);
+                    } 
                 }
             }
         }
