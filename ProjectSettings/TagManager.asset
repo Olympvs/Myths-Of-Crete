@@ -9,6 +9,7 @@ TagManager:
   - DoorSceneTrigger
   - Interactable
   - Enemy
+  - DestructObj
   layers:
   - Default
   - TransparentFX
