@@ -10,6 +10,8 @@ namespace Olympvs
         EnemyBossManager enemyBossManager;
         public AudioSource audio;
         public AudioClip hit;
+        public AudioSource deathAudio;
+        public AudioClip death;
         public bool isBoss; 
 
         private void Awake() 
@@ -58,6 +60,7 @@ namespace Olympvs
             {
                 currentHealth = 0;
                 isDead = true;
+                deathAudio.PlayOneShot(death);
                 HandleDead();
             }
         }
