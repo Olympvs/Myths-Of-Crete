@@ -6,6 +6,8 @@ public class ThunderControl : MonoBehaviour
 {
     public ParticleSystem collisionParticleSystem;
     public GameObject gameObject;
+    public AudioSource audioSource;
+    public AudioClip audioThunder;
     public bool once = true;
 
     private void OnTriggerEnter(Collider other)
@@ -17,6 +19,8 @@ public class ThunderControl : MonoBehaviour
 
             em.enabled = true;
             collisionParticleSystem.Play();
+            audioSource.PlayOneShot(audioThunder);
+
 
             once = false;
             Destroy(gameObject);
