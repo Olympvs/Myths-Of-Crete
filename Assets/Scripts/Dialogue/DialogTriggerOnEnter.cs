@@ -38,6 +38,11 @@ namespace Olympvs
                     StartCoroutine(WaitDialogue(6f));
                     StartCoroutine(WaitDialogue(9f));
                 }
+                else if (ScoreAndStates.missionScore == 5)
+                {
+                    StartCoroutine(WaitDialogue(4f));
+                    StartCoroutine(WaitDialogue(12f));
+                }
                 
             }
             
