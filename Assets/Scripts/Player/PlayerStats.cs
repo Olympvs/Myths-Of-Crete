@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Olympvs
 {
@@ -76,6 +77,7 @@ namespace Olympvs
                 isDead = true;
                 audioDeath.PlayOneShot(death);
                 //HANDLE PLAYER DEAD
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
 

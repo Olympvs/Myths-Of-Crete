@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Olympvs
 {
@@ -77,6 +78,10 @@ namespace Olympvs
             animator.Play("Dead_01");
             yield return new WaitForSecondsRealtime(5f);
             Destroy(gameObject);
+            if (isBoss)
+            {
+                SceneManager.LoadScene(6);
+            }
         }
     }
 }
