@@ -9,6 +9,8 @@ namespace Olympvs
         AnimatorHandler animatorHandler;
         InputHandler inputHandler;
         WeaponSlotManager weaponSlotManager;
+        public AudioSource audio;
+        public AudioClip sword;
         public string lastAttack;
 
         private void Awake() 
@@ -29,10 +31,12 @@ namespace Olympvs
                     animatorHandler.PlayTargetAnimation(weapon.OH_Light_Attack_2, true);
 
                     lastAttack = weapon.OH_Light_Attack_2;
+                    audio.PlayOneShot(sword);
                 }
                 else if (lastAttack == weapon.OH_Light_Attack_2)
                 {
                     animatorHandler.PlayTargetAnimation(weapon.OH_Light_Attack_3, true);
+                    audio.PlayOneShot(sword);
                 }
             }
         }
@@ -42,6 +46,7 @@ namespace Olympvs
             weaponSlotManager.attackingWeapon = weapon;
             animatorHandler.PlayTargetAnimation(weapon.OH_Light_Attack_1, true);
             lastAttack = weapon.OH_Light_Attack_1;
+            audio.PlayOneShot(sword);
         }
 
         public void HandleHeavyAttack(WeaponItem weapon)
@@ -49,6 +54,7 @@ namespace Olympvs
             weaponSlotManager.attackingWeapon = weapon;
             animatorHandler.PlayTargetAnimation(weapon.OH_Heavy_Attack_1, true);
             lastAttack = weapon.OH_Heavy_Attack_1;
+            audio.PlayOneShot(sword);
         }
     }
 }

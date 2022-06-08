@@ -11,6 +11,10 @@ namespace Olympvs
         public HealthBar healthBar;
         public StaminaBar staminaBar;
         AnimatorHandler animatorHandler;
+        public AudioSource audio;
+        public AudioClip pain;
+        public AudioSource audioDeath;
+        public AudioClip death;
 
         public float staminaRegenerationAmount = 13;
         public float staminaRegenerationTimer = 0;
@@ -58,6 +62,7 @@ namespace Olympvs
             {
                 return;
             }
+            audio.PlayOneShot(pain);
             currentHealth = currentHealth - damage;
 
             healthBar.SetCurrentHealth(currentHealth);
@@ -69,6 +74,7 @@ namespace Olympvs
                 currentHealth = 0;
                 animatorHandler.PlayTargetAnimation("Dead_01", true);
                 isDead = true;
+                audioDeath.PlayOneShot(death);
                 //HANDLE PLAYER DEAD
             }
         }

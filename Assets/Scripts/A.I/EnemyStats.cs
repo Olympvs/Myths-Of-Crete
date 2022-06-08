@@ -8,6 +8,8 @@ namespace Olympvs
     {
         Animator animator;
         EnemyBossManager enemyBossManager;
+        public AudioSource audio;
+        public AudioClip hit;
         public bool isBoss; 
 
         private void Awake() 
@@ -41,6 +43,7 @@ namespace Olympvs
             currentHealth = currentHealth - damage;
 
             animator.Play("Damage_01");
+            audio.PlayOneShot(hit);
 
             if (!isBoss)
             {
