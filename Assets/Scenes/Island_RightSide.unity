@@ -1071,7 +1071,7 @@ MonoBehaviour:
     m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 7833774368740617154}
-    m_SelectOnDown: {fileID: 870330942}
+    m_SelectOnDown: {fileID: 7833774369249419589}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -1361,7 +1361,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1375623419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18271,7 +18271,7 @@ MonoBehaviour:
     m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 7833774370332275336}
-    m_SelectOnDown: {fileID: 7833774369249419589}
+    m_SelectOnDown: {fileID: 870330942}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
@@ -18844,7 +18844,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7833774369309659174
 RectTransform:
   m_ObjectHideFlags: 0
