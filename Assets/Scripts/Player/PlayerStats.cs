@@ -86,6 +86,11 @@ namespace Olympvs
             currentStamina = currentStamina - damage;
 
             staminaBar.SetCurrentStamina(currentStamina);
+
+            if (currentStamina <= 0)
+            {
+                currentStamina = 0;
+            }
         } 
 
         public void RegenerateStamina()
