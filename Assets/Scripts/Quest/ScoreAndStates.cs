@@ -6,7 +6,7 @@ namespace Olympvs
 {
     public class ScoreAndStates : MonoBehaviour
     {
-        public static int missionScore;
+        public static int missionScore = 2;
         public static int playerHealth;
     }
 }

@@ -9,7 +9,6 @@ namespace Olympvs
     {
         InputHandler inputHandler;
         PlayerManager playerManager;
-        CyclopNPC cyclopNPC;
         public Dialogue dialogue;
         public GameObject popUp;
         public Text popUpText;
@@ -20,7 +19,6 @@ namespace Olympvs
         {
             inputHandler = GetComponent<InputHandler>();
             questGiver = FindObjectOfType<QuestGiver>();
-            cyclopNPC = GetComponent<CyclopNPC>();
         }
 
         void Update() 

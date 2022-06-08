@@ -6,7 +6,7 @@ namespace Olympvs
 {
     public class PlayerManager : CharacterManager
     {
-        InputHandler inputHandler;
+        public InputHandler inputHandler;
         Animator anim;
         CameraHandler cameraHandler;
         PlayerStats playerStats;
