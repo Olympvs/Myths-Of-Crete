@@ -17,7 +17,7 @@ namespace Olympvs
 
         public void OpenQuestWindow()
         {
-            questWindow.SetActive(true);
+            //questWindow.SetActive(true);
             titleText.text = quest.title;
             descriptionText.text = quest.description;
         }

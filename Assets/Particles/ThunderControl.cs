@@ -2,43 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThunderControl : MonoBehaviour
+namespace Olympvs
 {
-    public ParticleSystem collisionParticleSystem;
-    public GameObject gameObject;
-    public AudioSource audioSource;
-    public AudioClip audioThunder;
-    public bool once = true;
-
-    private void OnTriggerEnter(Collider other)
+    public class ThunderControl : MonoBehaviour
     {
-        if(other.gameObject.CompareTag("Player") && once)
+        public ParticleSystem collisionParticleSystem;
+        public GameObject gameObject;
+        public AudioSource audioSource;
+        public AudioClip audioThunder;
+        public bool once = true;
+
+        private void OnTriggerEnter(Collider other)
         {
-            var em = collisionParticleSystem.emission;
-            var dur = collisionParticleSystem.duration;
+            if(other.gameObject.CompareTag("Player") && once)
+            {
+                ScoreAndStates.missionScore += 1;
+                Debug.Log(ScoreAndStates.missionScore.ToString());
+                var em = collisionParticleSystem.emission;
+                var dur = collisionParticleSystem.duration;
 
-            em.enabled = true;
-            collisionParticleSystem.Play();
-            audioSource.PlayOneShot(audioThunder);
+                em.enabled = true;
+                collisionParticleSystem.Play();
+                audioSource.PlayOneShot(audioThunder);
 
 
-            once = false;
-            Destroy(gameObject);
-            Invoke(nameof(DestroyObj), dur);
-            StartCoroutine(StopParticleSystem(collisionParticleSystem, 1));
+                once = false;
+                Destroy(gameObject);
+                Invoke(nameof(DestroyObj), dur);
+                StartCoroutine(StopParticleSystem(collisionParticleSystem, 1));
+            }
+
+
         }
 
+        IEnumerator StopParticleSystem(ParticleSystem collisionParticleSystem, float time)
+        {
+            yield return new WaitForSeconds(time);
+            collisionParticleSystem.Stop();
+        }
 
-    }
-
-    IEnumerator StopParticleSystem(ParticleSystem collisionParticleSystem, float time)
-    {
-        yield return new WaitForSeconds(time);
-        collisionParticleSystem.Stop();
-    }
-
-    void DestroyObj()
-    {
-        Destroy(gameObject);
+        void DestroyObj()
+        {
+            Destroy(gameObject);
+        }
     }
 }

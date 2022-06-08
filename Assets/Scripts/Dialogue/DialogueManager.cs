@@ -65,10 +65,23 @@ namespace Olympvs
 
         void EndDialog()
         {
-            playerManager.isSpeaking = false;
-            Debug.Log(playerManager.isInteracting);
-            Debug.Log("End of conversation.");
-            animator.SetBool("IsOpen", false);
+            if (ScoreAndStates.missionScore == 1)
+            {
+                playerManager.isSpeaking = false;
+                Debug.Log(playerManager.isInteracting);
+                Debug.Log("End of conversation.");
+                animator.SetBool("IsOpen", false);
+                ScoreAndStates.missionScore++;
+            }
+            else
+            {
+                playerManager.isSpeaking = false;
+                Debug.Log(playerManager.isInteracting);
+                Debug.Log("End of conversation.");
+                animator.SetBool("IsOpen", false);
+                //ScoreAndStates.missionScore++;
+            }
+            
         }
     }
 }

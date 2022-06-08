@@ -146,10 +146,14 @@ namespace Olympvs
                 if (hit.collider.tag == "Interactable" && isDialog)
                 {
                     DialogueTrigger dialogueTrigger = hit.collider.GetComponent<DialogueTrigger>();
+                    Debug.Log(isSpeaking);
                     if (dialogueTrigger != null && inputHandler.a_Input && isSpeaking == false)
                     {
-                        hit.collider.GetComponent<DialogueTrigger>().TriggerDialogue();
-                        isSpeaking = true;
+                        if (hit.collider.GetComponent<DialogueTrigger>().condition == ScoreAndStates.missionScore)
+                        {
+                            hit.collider.GetComponent<DialogueTrigger>().TriggerDialogue();
+                            isSpeaking = true;
+                        }
                     }
                     if (dialogueTrigger != null && inputHandler.a_Input && isSpeaking == true)
                     {

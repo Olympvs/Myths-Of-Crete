@@ -9,15 +9,18 @@ namespace Olympvs
     {
         InputHandler inputHandler;
         PlayerManager playerManager;
+        CyclopNPC cyclopNPC;
         public Dialogue dialogue;
         public GameObject popUp;
         public Text popUpText;
         public QuestGiver questGiver;
+        public int condition;
 
         void Start()
         {
             inputHandler = GetComponent<InputHandler>();
             questGiver = FindObjectOfType<QuestGiver>();
+            cyclopNPC = GetComponent<CyclopNPC>();
         }
 
         void Update() 
@@ -31,7 +34,7 @@ namespace Olympvs
 
         private void OnTriggerEnter(Collider other) 
         {
-            if (other.tag == "Player")
+            if (other.tag == "Player" && ScoreAndStates.missionScore == condition)
             {
                 playerManager = other.GetComponent<PlayerManager>();
                 popUpText.text = "Press F to Talk";
